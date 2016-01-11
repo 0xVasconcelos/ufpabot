@@ -11,9 +11,7 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License. */
-   
-   /* SPOILER ALERT: Sou péssimo com regex(lucaslg26) */ 
-
+/* SPOILER ALERT: Sou péssimo com regex(lucaslg26) */
 var TelegramBot = require('node-telegram-bot-api');
 var htmlToJson = require('html-to-json');
 
@@ -38,19 +36,19 @@ bot.onText(/\/cardapio/, function(msg, match) {
     botan.track(message, 'cardapio');
 });
 
-bot.onText(/\/ajuda/, function (msg, match) {
+bot.onText(/\/ajuda/, function(msg, match) {
     var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
     bot.sendMessage(msg.chat.id, text);
     botan.track(message, 'help');
 });
 
-bot.onText(/\/help/, function (msg, match) {
+bot.onText(/\/help/, function(msg, match) {
     var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
     bot.sendMessage(msg.chat.id, text);
     botan.track(message, 'help');
 });
 
-bot.onText(/\/start/, function (msg, match) {
+bot.onText(/\/start/, function(msg, match) {
     var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
     bot.sendMessage(msg.chat.id, text);
     botan.track(message, 'start');
@@ -209,6 +207,7 @@ function cardapioUpdate() {
                     aux = almoco[i];
                     almoco[i] = [];
                     var arrSplit = /(\b[A-Z0-9 \/]{3,}\b) (.+)/.exec(aux[0]);
+                    if (!arrSplit) arrSplit = ["", "", aux[0]];
                     almoco[i].push(arrSplit[1]);
                     var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
                     if (farofaChecker) {
@@ -232,7 +231,8 @@ function cardapioUpdate() {
                     }
                 }
                 if (aux.length - 1 == j) {
-                    almoco[i][almoco[i].length - 1] = almoco[i][almoco[i].length - 1].replace(/\;/, "");
+                    if (almoco[i][almoco[i].length - 1])
+                        almoco[i][almoco[i].length - 1] = almoco[i][almoco[i].length - 1].replace(/\;/, "");
                 }
             }
         }
@@ -242,6 +242,7 @@ function cardapioUpdate() {
                     aux = jantar[i];
                     jantar[i] = [];
                     var arrSplit = /(\b[A-Z0-9 \/]{3,}\b) (.+)/.exec(aux[0]);
+                    if (!arrSplit) arrSplit = [, "", aux[0]];
                     jantar[i].push(arrSplit[1]);
                     var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
                     if (farofaChecker) {
@@ -265,7 +266,8 @@ function cardapioUpdate() {
                     }
                 }
                 if (aux.length - 1 == j) {
-                    jantar[i][jantar[i].length - 1] = jantar[i][jantar[i].length - 1].replace(/\;/, "");
+                    if (jantar[i][jantar[i].length - 1])
+                        jantar[i][jantar[i].length - 1] = jantar[i][jantar[i].length - 1].replace(/\;/, "");
                 }
             }
         }
