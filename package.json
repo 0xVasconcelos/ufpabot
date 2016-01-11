@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/lucaslg26/ufpabot#readme",
   "dependencies": {
-    "botanio": "0.0.6"
+    "botanio": "0.0.6",
+    "html-to-json": "^0.6.0",
+    "node-telegram-bot-api": "^0.19.0"
   }
 }
