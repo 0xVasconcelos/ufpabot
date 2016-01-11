@@ -1,0 +1,24 @@
+{
+  "name": "ufpabot",
+  "version": "0.1.0",
+  "description": "Source do bot da UFPA no Telegram @UFPABot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaslg26/ufpabot.git"
+  },
+  "keywords": [
+    "bot",
+    "ufpa",
+    "ru"
+  ],
+  "author": "Lucas Vasconcelos (lucaslg26@yahoo.com.br)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/lucaslg26/ufpabot/issues"
+  },
+  "homepage": "https://github.com/lucaslg26/ufpabot#readme"
+}
