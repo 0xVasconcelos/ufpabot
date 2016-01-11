@@ -11,14 +11,14 @@ var botan = require('botanio')('');
 
 var cardapioRU = {};
 
-bot.onText(/^\/cardapio$/, function(msg, match) {
-    enviarCardapio(msg);
-    botan.track(message, 'cardapio');
-});
-
 bot.onText(/\/cardapio (.+)?/, function(msg, match) {
     var params = match[1];
     enviarCardapio(msg, 'dia', params);
+    botan.track(message, 'cardapio');
+});
+
+bot.onText(/\/cardapio/, function(msg, match) {
+    enviarCardapio(msg);
     botan.track(message, 'cardapio');
 });
 
