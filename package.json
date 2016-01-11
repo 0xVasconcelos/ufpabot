@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/lucaslg26/ufpabot/issues"
   },
-  "homepage": "https://github.com/lucaslg26/ufpabot#readme"
+  "homepage": "https://github.com/lucaslg26/ufpabot#readme",
+  "dependencies": {
+    "botanio": "0.0.6"
+  }
 }

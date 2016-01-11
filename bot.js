@@ -7,16 +7,37 @@ var bot = new TelegramBot(token, {
     polling: true
 });
 
+var botan = require('botanio')('');
+
 var cardapioRU = {};
 
 bot.onText(/^\/cardapio$/, function(msg, match) {
     enviarCardapio(msg);
+    botan.track(message, 'cardapio');
 });
 
 bot.onText(/\/cardapio (.+)?/, function(msg, match) {
     var params = match[1];
     enviarCardapio(msg, 'dia', params);
+    botan.track(message, 'cardapio');
+});
 
+bot.onText(/\/ajuda/, function (msg, match) {
+    var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
+    bot.sendMessage(msg.chat.id, text);
+    botan.track(message, 'help');
+});
+
+bot.onText(/\/help/, function (msg, match) {
+    var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
+    bot.sendMessage(msg.chat.id, text);
+    botan.track(message, 'help');
+});
+
+bot.onText(/\/start/, function (msg, match) {
+    var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
+    bot.sendMessage(msg.chat.id, text);
+    botan.track(message, 'start');
 });
 
 cardapioUpdate();
