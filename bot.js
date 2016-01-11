@@ -16,12 +16,12 @@ var TelegramBot = require('node-telegram-bot-api');
 var htmlToJson = require('html-to-json');
 
 
-var token = '';
+var token = '-';
 var bot = new TelegramBot(token, {
     polling: true
 });
 
-var botan = require('botanio')('');
+var botan = require('botanio')('-');
 
 var cardapioRU = {};
 
@@ -61,7 +61,39 @@ setTimeout(cardapioUpdate, 500000);
 function enviarCardapio(msg, type, dia) {
     if (!type) {
         var cardapio;
-        cardapio = "🍝 Cardápio do RU 🍳\n"
+        cardapio = "🍝 Cardápio do RU 🍳\n\n"
+
+        cardapio += "🍽 Almoço\n\n"
+
+        if(cardapioRU.info.almoco.basico){
+            cardapio += "✅ Básico "
+        } else {
+            cardapio += "❌ Básico "
+        }
+
+        if(cardapioRU.info.almoco.profissional){
+            cardapio += "✅ Profissional\n"
+        } else {
+            cardapio += "❌ Profissional\n"
+        }
+
+        cardapio += "\n🍴 Jantar\n\n"
+
+        if(cardapioRU.info.jantar.basico){
+            cardapio += "✅ Básico "
+        } else {
+            cardapio += "❌ Básico "
+        }
+
+        if(cardapioRU.info.jantar.profissional){
+            cardapio += "✅ Profissional\n"
+        } else {
+            cardapio += "❌ Profissional\n"
+        }
+
+        cardapio += "\nAviso: "
+        cardapio += cardapioRU.info.aviso
+        cardapio += "\n";
 
         cardapio += "\n😟 Segunda-feira\n"
         cardapio += "\n🍽 Almoço\n"
@@ -132,8 +164,40 @@ function enviarCardapio(msg, type, dia) {
     } else if (type == 'dia') {
         if (cardapioRU.cardapio[dia]) {
             var cardapio;
+            cardapio = "🍝 Cardápio do RU 🍳\n\n"
 
-            cardapio = "\n🍽 Almoço\n"
+            cardapio += "🍽 Almoço\n\n"
+
+            if(cardapioRU.info.almoco.basico){
+                cardapio += "✅ Básico "
+            } else {
+                cardapio += "❌ Básico "
+            }
+
+            if(cardapioRU.info.almoco.profissional){
+                cardapio += "✅ Profissional\n"
+            } else {
+                cardapio += "❌ Profissional\n"
+            }
+
+            cardapio += "\n🍴 Jantar\n"
+
+            if(cardapioRU.info.jantar.basico){
+                cardapio += "✅ Básico "
+            } else {
+                cardapio += "❌ Básico "
+            }
+
+            if(cardapioRU.info.jantar.profissional){
+                cardapio += "✅ Profissional\n"
+            } else {
+                cardapio += "❌ Profissional\n"
+            }
+
+            cardapio += "\nAviso: "
+            cardapio += cardapioRU.info.aviso
+            cardapio += "\n";
+            cardapio += "\n🍽 Almoço\n"
 
             for (var i in cardapioRU.cardapio[dia].almoco) {
                 cardapio += cardapioRU.cardapio[dia].almoco[i] + "\n";
@@ -144,7 +208,6 @@ function enviarCardapio(msg, type, dia) {
             for (var i in cardapioRU.cardapio[dia].jantar) {
                 cardapio += cardapioRU.cardapio[dia].jantar[i] + "\n";
             }
-
             bot.sendMessage(msg.chat.id, cardapio);
         }
     }
