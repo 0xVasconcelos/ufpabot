@@ -270,7 +270,7 @@ function cardapioUpdate() {
                 if (j == 0) {
                     aux = almoco[i];
                     almoco[i] = [];
-                    var arrSplit = /(\b[A-Z0-9 \/]{3,}\b) (.+)/.exec(aux[0]);
+                    var arrSplit = /(\b[A-Z0-9Ã \/]{3,}\b) (.+)/.exec(aux[0]);
                     if (!arrSplit) arrSplit = ["", "", aux[0]];
                     almoco[i].push(arrSplit[1]);
                     var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
@@ -305,7 +305,7 @@ function cardapioUpdate() {
                 if (j == 0) {
                     aux = jantar[i];
                     jantar[i] = [];
-                    var arrSplit = /(\b[A-Z0-9 \/]{3,}\b) (.+)/.exec(aux[0]);
+                    var arrSplit = /(\b[A-Z0-9Ã \/]{3,}\b) (.+)/.exec(aux[0]);
                     if (!arrSplit) arrSplit = [, "", aux[0]];
                     jantar[i].push(arrSplit[1]);
                     var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
