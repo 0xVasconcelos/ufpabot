@@ -61,7 +61,7 @@ bot.onText(/\/start/, function (msg, match) {
 });
 
 cardapioUpdate();
-setTimeout(cardapioUpdate, 500000);
+setInterval(cardapioUpdate, 500000);
 
 
 function enviarCardapio(msg, type, dia) {
