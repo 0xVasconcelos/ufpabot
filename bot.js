@@ -32,6 +32,12 @@ bot.onText(/\/cardapio (.+)?/, function (msg, match) {
 });
 
 bot.onText(/\/cardapio/, function (msg, match) {
+  var params = getWeekDay(new Date);
+  enviarCardapio(msg, 'dia', params);
+  botan.track(message, 'cardapio');
+});
+
+bot.onText(/\/rusemana/, function (msg, match) {
   enviarCardapio(msg);
   botan.track(message, 'cardapio');
 });
@@ -211,6 +217,11 @@ function enviarCardapio(msg, type, dia) {
       bot.sendMessage(msg.chat.id, cardapio);
     }
   }
+}
+
+function getWeekDay(date) {
+  var days = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sabado']
+  return days[date.getDay()]
 }
 
 function cardapioUpdate() {
