@@ -172,34 +172,6 @@ function enviarCardapio(msg, type, dia) {
       var cardapio;
       cardapio = "🍝 Cardápio do RU 🍳\n\n"
 
-      cardapio += "🍽 Almoço\n\n"
-
-      if (cardapioRU.info.almoco.basico) {
-        cardapio += "✅ Básico "
-      } else {
-        cardapio += "❌ Básico "
-      }
-
-      if (cardapioRU.info.almoco.profissional) {
-        cardapio += "✅ Profissional\n"
-      } else {
-        cardapio += "❌ Profissional\n"
-      }
-
-      cardapio += "\n🍴 Jantar\n"
-
-      if (cardapioRU.info.jantar.basico) {
-        cardapio += "✅ Básico "
-      } else {
-        cardapio += "❌ Básico "
-      }
-
-      if (cardapioRU.info.jantar.profissional) {
-        cardapio += "✅ Profissional\n"
-      } else {
-        cardapio += "❌ Profissional\n"
-      }
-
       cardapio += "\nAviso: "
       cardapio += cardapioRU.info.aviso
       cardapio += "\n";
