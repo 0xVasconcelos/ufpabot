@@ -173,7 +173,7 @@ function enviarCardapio(msg, type, dia) {
       cardapio = "🍝 Cardápio do RU 🍳\n"
       cardapio += "\nAviso: "
       cardapio += cardapioRU.info.aviso
-      cardapio += "\n🍽 Almoço\n"
+      cardapio += "\n\n🍽 Almoço\n"
 
       for (var i in cardapioRU.cardapio[dia].almoco) {
         if(cardapioRU.cardapio[dia].almoco[i].length === 0){
