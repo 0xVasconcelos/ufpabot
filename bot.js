@@ -16,12 +16,12 @@ var TelegramBot = require('node-telegram-bot-api');
 var htmlToJson = require('html-to-json');
 
 
-var token = '-';
+var token = process.argv[2];
 var bot = new TelegramBot(token, {
   polling: true
 });
 
-var botan = require('botanio')('-');
+var botan = require('botanio')(process.argv[3]);
 
 var cardapioRU = {};
 
