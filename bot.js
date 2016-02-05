@@ -179,7 +179,8 @@ function enviarCardapio(msg, type, dia) {
 
       for (var i in cardapioRU.cardapio[dia].almoco) {
         if(cardapioRU.cardapio[dia].almoco[i].length === 0){
-          cardapio += 'Não será servido almoço 😟'
+          cardapio += 'Não será servido almoço 😟\n';
+          break;
         }
         cardapio += cardapioRU.cardapio[dia].almoco[i] + "\n";
       }
@@ -188,7 +189,8 @@ function enviarCardapio(msg, type, dia) {
 
       for (var i in cardapioRU.cardapio[dia].jantar) {
         if(cardapioRU.cardapio[dia].jantar[i].length === 0){
-          cardapio += 'Não será servido jantar 😟'
+          cardapio += 'Não será servido jantar 😟\n';
+          break;
         }
         cardapio += cardapioRU.cardapio[dia].jantar[i] + "\n";
       }
