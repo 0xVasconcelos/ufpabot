@@ -220,7 +220,7 @@ function enviarCardapio(msg, type, dia) {
 }
 
 function getWeekDay(date) {
-  var days = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sabado']
+  var days = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado']
   return days[date.getDay()]
 }
 
