@@ -187,7 +187,7 @@ function enviarCardapio(msg, type, dia) {
       cardapio += "\n🍴 Jantar\n"
 
       for (var i in cardapioRU.cardapio[dia].jantar) {
-        if(cardapioRU.cardapio[dia].almoco[i].length === 0){
+        if(cardapioRU.cardapio[dia].jantar[i].length === 0){
           cardapio += 'Não será servido jantar 😟'
         }
         cardapio += cardapioRU.cardapio[dia].jantar[i] + "\n";
