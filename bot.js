@@ -170,11 +170,9 @@ function enviarCardapio(msg, type, dia) {
   } else if (type == 'dia') {
     if (cardapioRU.cardapio[dia]) {
       var cardapio;
-      cardapio = "🍝 Cardápio do RU 🍳\n\n"
-
+      cardapio = "🍝 Cardápio do RU 🍳\n"
       cardapio += "\nAviso: "
       cardapio += cardapioRU.info.aviso
-      cardapio += "\n";
       cardapio += "\n🍽 Almoço\n"
 
       for (var i in cardapioRU.cardapio[dia].almoco) {
