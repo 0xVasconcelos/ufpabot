@@ -178,12 +178,18 @@ function enviarCardapio(msg, type, dia) {
       cardapio += "\n🍽 Almoço\n"
 
       for (var i in cardapioRU.cardapio[dia].almoco) {
+        if(cardapioRU.cardapio[dia].almoco[i].length === 0){
+          cardapio += 'Não será servido almoço 😟'
+        }
         cardapio += cardapioRU.cardapio[dia].almoco[i] + "\n";
       }
 
       cardapio += "\n🍴 Jantar\n"
 
       for (var i in cardapioRU.cardapio[dia].jantar) {
+        if(cardapioRU.cardapio[dia].almoco[i].length === 0){
+          cardapio += 'Não será servido jantar 😟'
+        }
         cardapio += cardapioRU.cardapio[dia].jantar[i] + "\n";
       }
       bot.sendMessage(msg.chat.id, cardapio);
