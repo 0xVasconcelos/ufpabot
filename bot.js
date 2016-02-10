@@ -43,19 +43,19 @@ bot.onText(/\/rusemana/, function (msg, match) {
 });
 
 bot.onText(/\/ajuda/, function (msg, match) {
-  var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
+  var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @vasconcelos\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
   bot.sendMessage(msg.chat.id, text);
   botan.track(message, 'help');
 });
 
 bot.onText(/\/help/, function (msg, match) {
-  var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
+  var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @vasconcelos\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
   bot.sendMessage(msg.chat.id, text);
   botan.track(message, 'help');
 });
 
 bot.onText(/\/start/, function (msg, match) {
-  var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @lucaslg26\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
+  var text = "Um bot feito pelos alunos da UFPA para os alunos da UFPA! Qualquer dúvida ou sugestão, entrar em contato com @vasconcelos\nComandos: \n/cardapio\n/cardapio [dia]\nEx: /cardapio sexta";
   bot.sendMessage(msg.chat.id, text);
   botan.track(message, 'start');
 });
