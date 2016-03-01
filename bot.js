@@ -192,7 +192,9 @@ function enviarCardapio(msg, type, dia) {
         }
         cardapio += cardapioRU.cardapio[dia].jantar[i] + "\n";
       }
-      bot.sendMessage(msg.chat.id, cardapio);
+      bot.sendMessage(msg.chat.id, cardapio, {
+         "disable_web_page_preview": 1
+      });
     }
   }
 }
