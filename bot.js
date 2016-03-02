@@ -332,7 +332,6 @@ function cardapioUpdate() {
             dateSoma = '0' + dateSoma;
         dias[i] = dias[i].toLowerCase().replace('ç', 'c');
         var data = new Date(parseInt(date_ano), parseInt(date_de[2]-1), dateSoma);
-        console.log(data)
         cardapioRU['cardapio'][dias[i]] = {
             data: (data.getDate() > 9 ? data.getDate() : '0' + data.getDate()) + '/' + ((data.getMonth()+1) > 9 ? data.getMonth() : '0' + data.getMonth()) + '/' + data.getFullYear(),
             almoco: almoco[i],
