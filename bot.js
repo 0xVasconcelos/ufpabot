@@ -327,15 +327,17 @@ function cardapioUpdate() {
       }
     }
     for (var i in dias) {
-      var dateSoma = parseInt(date_de[1]) + parseInt(i);
-      if (dateSoma < 9)
-        dateSoma = '0' + dateSoma;
-      dias[i] = dias[i].toLowerCase().replace('ç', 'c');
-      cardapioRU['cardapio'][dias[i]] = {
-        data: dateSoma + '/' + date_de[2] + '/' + date_ano,
-        almoco: almoco[i],
-        jantar: jantar[i]
-      }
+        var dateSoma = parseInt(date_de[1]) + parseInt(i);
+        if (dateSoma < 9)
+            dateSoma = '0' + dateSoma;
+        dias[i] = dias[i].toLowerCase().replace('ç', 'c');
+        var data = new Date(parseInt(date_ano), parseInt(date_de[2]-1), dateSoma);
+        console.log(data)
+        cardapioRU['cardapio'][dias[i]] = {
+            data: (data.getDate() > 9 ? data.getDate() : '0' + data.getDate()) + '/' + ((data.getMonth()+1) > 9 ? data.getMonth() : '0' + data.getMonth()) + '/' + data.getFullYear(),
+            almoco: almoco[i],
+            jantar: jantar[i]
+        }
     }
     cardapioRU['info'] = ruDisponivel;
   });
