@@ -230,7 +230,8 @@ function cardapioUpdate() {
     var jantarParser = /JANTAR(.+)/.exec(result.dia_da_semana[1]);
     var horarioAlmoco = /([0-9][0-9]:[0-9][0-9]) ÀS ([0-9][0-9]:[0-9][0-9])/.exec(almocoParser[1]).slice(1, 3);
     var horarioJanta = /([0-9][0-9]:[0-9][0-9]) ÀS ([0-9][0-9]:[0-9][0-9])/.exec(jantarParser[1]).slice(1, 3);
-    var aviso = /Aviso: (.+)/.exec(result.dia_da_semana[2] || result.dia_da_semana[1])[1];
+    var aviso = /Aviso: (.+)/.exec(result.dia_da_semana[1]);
+    aviso = (aviso ? aviso[1] : "Sem avisos");
     var dias = result.dia_da_semana.slice(4, 9);
     var almoco = result.almoco.slice(4, 9);
     var jantar = result.jantar.slice(4, 9);
