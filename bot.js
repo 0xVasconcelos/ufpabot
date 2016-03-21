@@ -233,8 +233,8 @@ promise.done(function(result) {
     var aviso = /Aviso: (.+)/.exec(result.dia_da_semana[1]);
     aviso = (aviso ? aviso[1] : "Sem avisos");
     var dias = result.dia_da_semana.slice(3, 8);
-    var almoco = result.almoco.slice(4, 9);
-    var jantar = result.jantar.slice(4, 9);
+    var almoco = result.almoco.slice(3, 8);
+    var jantar = result.jantar.slice(3, 8);
     var aux;
 
     ruDisponivel = {
