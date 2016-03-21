@@ -206,19 +206,19 @@ function getWeekDay(date) {
 
 function cardapioUpdate() {
   var promise = htmlToJson.request('http://ru.ufpa.br/index.php?option=com_content&view=article&id=7', {
-    'dia_da_semana': ['tbody tr', function ($doc) {
-      return $doc.find('td').eq(0).text().replace(/\n/g, " ").replace(/\r/g, "").replace(/\. /g, "").replace(/^\s+|\s+$|\s+(?=\s)/g, "");
+    'dia_da_semana': ['tbody tr', function($doc) {
+        return $doc.find('td').eq(0).text().replace(/\n/g, " ").replace(/\r/g, "").replace(/\. /g, "").replace(/^\s+|\s+$|\s+(?=\s)/g, "");
     }],
-    'almoco': ['tbody tr', function ($doc) {
-      return $doc.find('td').eq(1).text().replace(/\n/g, " ").replace(/\r/g, "").replace(/\. /g, "; ").replace(/^\s+|\s+$|\s+(?=\s)/g, "");
+    'almoco': ['tbody tr', function($doc) {
+        return $doc.find('td').eq(1).text().replace(/\n/g, " ").replace(/\r/g, "").replace(/\. /g, "; ").replace(/^\s+|\s+$|\s+(?=\s)/g, "");
     }],
-    'jantar': ['tbody tr', function ($doc) {
-      return $doc.find('td').eq(2).text().replace(/\n/g, " ").replace(/\r/g, "").replace(/\. /g, "; ").replace(/^\s+|\s+$|\s+(?=\s)/g, "");
+    'jantar': ['tbody tr', function($doc) {
+        return $doc.find('td').eq(2).text().replace(/\n/g, " ").replace(/\r/g, "").replace(/\. /g, "; ").replace(/^\s+|\s+$|\s+(?=\s)/g, "");
     }]
-  });
+});
 
 
-  promise.done(function (result) {
+promise.done(function(result) {
     cardapioRU = {};
     cardapioRU['cardapio'] = {};
     cardapioRU['info'] = {};
@@ -238,93 +238,93 @@ function cardapioUpdate() {
     var aux;
 
     ruDisponivel = {
-      almoco: {
-        horario_de: horarioAlmoco[0],
-        horario_ate: horarioAlmoco[1],
-        basico: (almocoParser[1].indexOf("BÁSICO") > -1) ? true : false,
-        profissional: (almocoParser[1].indexOf("PROFISSIONAL") > -1) ? true : false
-      },
-      jantar: {
-        horario_de: horarioJanta[0],
-        horario_ate: horarioJanta[1],
-        basico: (jantarParser[1].indexOf("BÁSICO") > -1) ? true : false,
-        profissional: (jantarParser[1].indexOf("PROFISSIONAL") > -1) ? true : false
-      },
-      aviso: aviso ? aviso : false
+        almoco: {
+            horario_de: horarioAlmoco[0],
+            horario_ate: horarioAlmoco[1],
+            basico: (almocoParser[1].indexOf("BÁSICO") > -1) ? true : false,
+            profissional: (almocoParser[1].indexOf("PROFISSIONAL") > -1) ? true : false
+        },
+        jantar: {
+            horario_de: horarioJanta[0],
+            horario_ate: horarioJanta[1],
+            basico: (jantarParser[1].indexOf("BÁSICO") > -1) ? true : false,
+            profissional: (jantarParser[1].indexOf("PROFISSIONAL") > -1) ? true : false
+        },
+        aviso: aviso ? aviso : false
     }
     for (var i in almoco)
-      almoco[i] = almoco[i].split("; ");
+        almoco[i] = almoco[i].split("; ");
     for (var i in jantar)
-      jantar[i] = jantar[i].split("; ");
+        jantar[i] = jantar[i].split("; ");
     for (var i in almoco) {
-      for (var j in almoco[i]) {
-        if (j == 0) {
-          aux = almoco[i];
-          almoco[i] = [];
-          var arrSplit = /(\b[A-Z0-9Ã \/]{3,}\b) (.+)/.exec(aux[0]);
-          if (!arrSplit) arrSplit = ["", "", aux[0]];
-          almoco[i].push(arrSplit[1]);
-          var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
-          if (farofaChecker) {
-            almoco[i].push(farofaChecker[1]);
-            almoco[i].push(farofaChecker[2]);
-          } else {
-            almoco[i].push(arrSplit[2]);
-          }
-        } else {
-          var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(aux[j]);
-          if (farofaChecker) {
-            if (farofaChecker[1] && farofaChecker[2]) {
-              almoco[i].push(farofaChecker[1]);
-              almoco[i].push(farofaChecker[2]);
+        for (var j in almoco[i]) {
+            if (j == 0) {
+                aux = almoco[i];
+                almoco[i] = [];
+                var arrSplit = /(\b[A-Z0-9Ã \/]{3,}\b) (.+)/.exec(aux[0]);
+                if (!arrSplit) arrSplit = ["", "", aux[0]];
+                almoco[i].push(arrSplit[1]);
+                var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
+                if (farofaChecker) {
+                    almoco[i].push(farofaChecker[1]);
+                    almoco[i].push(farofaChecker[2]);
+                } else {
+                    almoco[i].push(arrSplit[2]);
+                }
             } else {
-              almoco[i].push(farofaChecker[3]);
-              almoco[i].push(farofaChecker[4]);
+                var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(aux[j]);
+                if (farofaChecker) {
+                    if (farofaChecker[1] && farofaChecker[2]) {
+                        almoco[i].push(farofaChecker[1]);
+                        almoco[i].push(farofaChecker[2]);
+                    } else {
+                        almoco[i].push(farofaChecker[3]);
+                        almoco[i].push(farofaChecker[4]);
+                    }
+                } else {
+                    almoco[i].push(aux[j]);
+                }
             }
-          } else {
-            almoco[i].push(aux[j]);
-          }
+            if (aux.length - 1 == j) {
+                if (almoco[i][almoco[i].length - 1])
+                    almoco[i][almoco[i].length - 1] = almoco[i][almoco[i].length - 1].replace(/\;/, "");
+            }
         }
-        if (aux.length - 1 == j) {
-          if (almoco[i][almoco[i].length - 1])
-            almoco[i][almoco[i].length - 1] = almoco[i][almoco[i].length - 1].replace(/\;/, "");
-        }
-      }
     }
     for (var i in jantar) {
-      for (var j in jantar[i]) {
-        if (j == 0) {
-          aux = jantar[i];
-          jantar[i] = [];
-          var arrSplit = /(\b[A-Z0-9Ã \/]{3,}\b) (.+)/.exec(aux[0]);
-          if (!arrSplit) arrSplit = [, "", aux[0]];
-          jantar[i].push(arrSplit[1]);
-          var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
-          if (farofaChecker) {
-            jantar[i].push(farofaChecker[1]);
-            jantar[i].push(farofaChecker[2]);
-          } else {
-            jantar[i].push(arrSplit[2]);
-          }
-        } else {
-          var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(aux[j]);
-          if (farofaChecker) {
-            if (farofaChecker[1] && farofaChecker[2]) {
-              jantar[i].push(farofaChecker[1]);
-              jantar[i].push(farofaChecker[2]);
+        for (var j in jantar[i]) {
+            if (j == 0) {
+                aux = jantar[i];
+                jantar[i] = [];
+                var arrSplit = /(\b[A-Z0-9Ã \/]{3,}\b) (.+)/.exec(aux[0]);
+                if (!arrSplit) arrSplit = [, "", aux[0]];
+                jantar[i].push(arrSplit[1]);
+                var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(arrSplit[2])
+                if (farofaChecker) {
+                    jantar[i].push(farofaChecker[1]);
+                    jantar[i].push(farofaChecker[2]);
+                } else {
+                    jantar[i].push(arrSplit[2]);
+                }
             } else {
-              jantar[i].push(farofaChecker[3]);
-              jantar[i].push(farofaChecker[4]);
+                var farofaChecker = /([A-z\s/ãáàéèíìõóòúù]+)\s(Farofa)|(Farofa)\s([A-z\s/ãáàéèíìõóòúù]+)/g.exec(aux[j]);
+                if (farofaChecker) {
+                    if (farofaChecker[1] && farofaChecker[2]) {
+                        jantar[i].push(farofaChecker[1]);
+                        jantar[i].push(farofaChecker[2]);
+                    } else {
+                        jantar[i].push(farofaChecker[3]);
+                        jantar[i].push(farofaChecker[4]);
+                    }
+                } else {
+                    jantar[i].push(aux[j]);
+                }
             }
-          } else {
-            jantar[i].push(aux[j]);
-          }
+            if (aux.length - 1 == j) {
+                if (jantar[i][jantar[i].length - 1])
+                    jantar[i][jantar[i].length - 1] = jantar[i][jantar[i].length - 1].replace(/\;/, "");
+            }
         }
-        if (aux.length - 1 == j) {
-          if (jantar[i][jantar[i].length - 1])
-            jantar[i][jantar[i].length - 1] = jantar[i][jantar[i].length - 1].replace(/\;/, "");
-        }
-      }
     }
     for (var i in dias) {
         var dateSoma = parseInt(date_de[1]) + parseInt(i);
@@ -339,6 +339,6 @@ function cardapioUpdate() {
         }
     }
     cardapioRU['info'] = ruDisponivel;
-  });
+});
 
 }
