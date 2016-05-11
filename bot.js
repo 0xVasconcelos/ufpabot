@@ -205,7 +205,9 @@ function getWeekDay(date) {
 }
 
 function cardapioUpdate() {
-  var promise = htmlToJson.request('http://ru.ufpa.br/index.php?option=com_content&view=article&id=7', {
+  var htmlToJson = require('html-to-json');
+
+var promise = htmlToJson.request('http://ru.ufpa.br/index.php?option=com_content&view=article&id=7', {
     'dia_da_semana': ['tbody tr', function($doc) {
         return $doc.find('td').eq(0).text().replace(/\n/g, " ").replace(/\r/g, "").replace(/\. /g, "").replace(/^\s+|\s+$|\s+(?=\s)/g, "");
     }],
@@ -226,10 +228,11 @@ promise.done(function(result) {
     var dateParser = result.dia_da_semana.slice(1, 3);
     var date_ano = /(\b[0-9]{4,4}\b)/.exec(dateParser[0])[1];
     var date_de = /(\b[0-9]{2})\/(\b[0-9]{2})/.exec(dateParser[0]);
-    var almocoParser = /\bALMOÇO(.+)JANTAR/.exec(result.dia_da_semana[1]);
-    var jantarParser = /JANTAR(.+)/.exec(result.dia_da_semana[1]);
-    var horarioAlmoco = /([0-9][0-9]:[0-9][0-9]) ÀS ([0-9][0-9]:[0-9][0-9])/.exec(almocoParser[1]).slice(1, 3);
-    var horarioJanta = /([0-9][0-9]:[0-9][0-9]) ÀS ([0-9][0-9]:[0-9][0-9])/.exec(jantarParser[1]).slice(1, 3);
+    var almocoParser = /\bAlmoço(.+)Jantar/.exec(result.dia_da_semana[1]);
+    var jantarParser = /Jantar(.+)/.exec(result.dia_da_semana[1]);
+    var horarioAlmoco = /([0-9][0-9]:[0-9][0-9]) às ([0-9][0-9]:[0-9][0-9])/.exec(almocoParser[1]).slice(1, 3);
+    //var horarioJanta = /([0-9][0-9]:[0-9][0-9]) ÀS ([0-9][0-9]:[0-9][0-9])/.exec(jantarParser[1]).slice(1, 3);
+    var horarioJanta = [ '00:00', '00:00' ];
     var aviso = /Aviso: (.+)/.exec(result.dia_da_semana[1]);
     aviso = (aviso ? aviso[1] : "Sem avisos");
     var dias = result.dia_da_semana.slice(3, 8);
